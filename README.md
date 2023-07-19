@@ -1,4 +1,4 @@
-# frontvue
+# test
 
 ## Project setup
 ```
