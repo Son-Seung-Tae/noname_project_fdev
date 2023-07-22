@@ -1,17 +1,11 @@
 <template>
     <!-- footer -->
     <footer id="footer">
-      <ul class="icons">
-        <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-        <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-        <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-      </ul>
+        <ul class="icons">
+            <li><a href="#" class="col-3"><img src="/assets/css/images/homeIcon.png"></a></li>
+            <li><a href="#" class="col-3"><img src="/assets/css/images/randomIcon.png"></a></li>
+            <li><a href="#" class="col-3"><img src="/assets/css/images/mypageIcon.png"></a></li>
+        </ul>
     </footer>
     <!-- script -->
 </template>
@@ -21,3 +15,24 @@
         
     }
 </script>
+
+<style>
+    .bottom_menu { 
+        position: fixed; 
+        bottom: 0px; 
+        left: 0px; 
+        width: 100%; 
+        height: 50px; 
+        z-index:100; 
+        border-top: 1px solid black; 
+        background-color: white 
+    }
+
+    .bottom_menu > div { 
+        float: left; 
+        width: 20%; 
+        height: 100%; 
+        text-align: center; 
+        padding-top: 13px; 
+    }
+</style>

@@ -3,11 +3,11 @@
 	<section id="main" class="wrapper style1">
 		<div class="content">
 			<div class="row">
-				<div class="col-4 col-12-medium">
-					<header>
-						<h2>추천 검색어</h2>
-					</header>
-				</div>
+				<header>
+					<h2>추천 검색어</h2>
+				</header>
+			</div>
+			<div class="row">
 				<div class="col-4 col-12-medium">
 					<div class="col-8 col-12-xsmall">
 						<input type="text" :value="'야식추천해줘'" disabled/>
