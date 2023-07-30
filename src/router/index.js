@@ -26,6 +26,17 @@ const routes = [
         name: 'loading',
         component: () => import('../pages/Loading.vue'),
     },
+    {
+        // 404.vue
+        path: '/404',
+        name: '404',
+        component: () => import('../pages/404.vue'),
+    },
+    {
+        // 존재하지않는 페이지 404로 리다이렉트
+        path: '/:pathMatch(.*)',
+        redirect: '404'
+    },
 ]
 
 const router = createRouter({
