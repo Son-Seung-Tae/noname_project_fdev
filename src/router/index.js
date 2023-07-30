@@ -8,11 +8,24 @@ const routes = [
         component: () => import('../pages/Home.vue'),
     },
     {
-        // test
-        path: '/test',
-        name: 'test',
-        component: () => import('../pages/Test.vue'),
-    }
+        // random.vue
+        path: '/Random',
+        name: 'random',
+        component: () => import('../pages/Random.vue'),
+
+    },
+    {
+        // search.vue
+        path: '/Search',
+        name: 'search',
+        component: () => import('../pages/Search.vue'),
+    },
+    {
+        // loading.vue
+        path: '/loading',
+        name: 'loading',
+        component: () => import('../pages/Loading.vue'),
+    },
 ]
 
 const router = createRouter({

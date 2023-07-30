@@ -2,9 +2,9 @@
     <!-- footer -->
     <footer id="footer">
         <ul class="icons">
-            <li><a href="#" class="col-3"><img src="/assets/css/images/homeIcon.png"></a></li>
-            <li><a href="#" class="col-3"><img src="/assets/css/images/randomIcon.png"></a></li>
-            <li><a href="#" class="col-3"><img src="/assets/css/images/mypageIcon.png"></a></li>
+            <li><a href="/Search" class="col-3"><img src="/assets/css/images/serchIcon.png"></a></li>
+            <li><a href="/" class="col-3"><img src="/assets/css/images/randomIcon.png"></a></li>
+            <li><a href="/Random" class="col-3"><img src="/assets/css/images/homeIcon.png"></a></li>
         </ul>
     </footer>
     <!-- script -->

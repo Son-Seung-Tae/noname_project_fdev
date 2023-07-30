@@ -15,7 +15,26 @@
 					<div class="col-8 col-12-xsmall">
 						<input type="text" :value="'회사 회식메뉴 추천 부탁드립니다.'" disabled/>
 					</div>
+					<div class="col-8 col-12-xsmall">
+						<input type="text" :value="'???'" disabled/>
+					</div>
+					<div class="col-8 col-12-xsmall">
+						<input type="text" :value="'???'" disabled/>
+					</div>
 				</div>
+			</div>
+			<div class="row_1">
+				<header>
+				<h2>인기메뉴</h2>
+				<table>
+				<tr>
+					<td><img src="/assets/css/images/sushi.png"></td><td><img src="/assets/css/images/beannoodle.png"></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/css/images/budae.png"></td><td><img src="/assets/css/images/cake.png"></td>
+				</tr>
+				</table>	
+				</header>
 			</div>
 		</div>
 	</section>
@@ -29,3 +48,16 @@
 		}
     }
 </script>
+
+<style>
+	.row_1 {
+		padding-top: 20px;
+	}
+	table {
+		width: 300px;
+	}
+	.content {
+		padding-left: 30px;
+		padding-top: 30px;
+	}
+</style>
