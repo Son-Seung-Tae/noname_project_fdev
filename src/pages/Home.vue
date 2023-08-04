@@ -10,30 +10,19 @@
 			<div class="row">
 				<div class="col-4 col-12-medium">
 					<div class="col-8 col-12-xsmall">
-						<input type="text" v-model="recommend1" disabled/>
-					</div>
-					<div class="col-8 col-12-xsmall">
-						<input type="text" v-model="recommend2" disabled/>
-					</div>
-					<div class="col-8 col-12-xsmall">
-						<input type="text" v-model="recommend3" disabled/>
-					</div>
-					<div class="col-8 col-12-xsmall">
-						<input type="text" v-model="recommend4" disabled/>
-					</div>
+						<input type="text" v-model="recommend1" disabled/><input type="text" v-model="recommend2" disabled/>
+						<input type="text" v-model="recommend3" disabled/><input type="text" v-model="recommend4" disabled/>
+					</div>			
 				</div>
 			</div>
 			<div class="row_1">
 				<header>
-				<h2>인기메뉴</h2>
-				<table>
-				<tr>
-					<td><img src="/assets/css/images/sushi.png"></td><td><img src="/assets/css/images/beannoodle.png"></td>
-				</tr>
-				<tr>
-					<td><img src="/assets/css/images/budae.png"></td><td><img src="/assets/css/images/cake.png"></td>
-				</tr>
-				</table>	
+					<h2>인기메뉴</h2>
+					<table>
+						<tr>
+							<td><img id="bestmenu" src="/assets/css/images/sushi.png"></td><td><img id="bestmenu" src="/assets/css/images/beannoodle.png"></td><td><img id="bestmenu" src="/assets/css/images/budae.png"></td><td><img id="bestmenu" src="/assets/css/images/cake.png"></td>
+						</tr>		
+					</table>	
 				</header>
 			</div>
 		</div>
@@ -77,13 +66,20 @@
 
 <style>
 	.row_1 {
-		padding-top: 20px;
+		padding-top: 50px;
 	}
+	
 	table {
 		width: 300px;
+		
 	}
+	
 	.content {
-		padding-left: 30px;
-		padding-top: 30px;
+		padding-left: 50px;
+		padding-top: 80px;
+	}
+	
+	#bestmenu {
+		width:300px;
 	}
 </style>
