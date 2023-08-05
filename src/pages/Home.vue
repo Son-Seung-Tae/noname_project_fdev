@@ -7,29 +7,73 @@
 					<h2>추천 검색어</h2>
 				</header>
 			</div>
-			<div class="row">
-				<div class="col-4 col-12-medium">
-					<div class="col-8 col-12-xsmall">
-						<input type="text" v-model="recommend1" disabled/><input type="text" v-model="recommend2" disabled/>
-						<input type="text" v-model="recommend3" disabled/><input type="text" v-model="recommend4" disabled/>
-					</div>			
+			<div class="row" v-if="innerWidth > 980">
+				<div class="col-2 col-12-medium">
+					<input type="text" v-model="recommend1" disabled/>
+				</div>
+				<div class="col-2 col-12-medium">
+					<input type="text" v-model="recommend2" disabled/>
+				</div>
+				<div class="col-2 col-12-medium">
+					<input type="text" v-model="recommend3" disabled/>
+				</div>
+				<div class="col-2 col-12-medium">
+					<input type="text" v-model="recommend4" disabled/>
 				</div>
 			</div>
-			<div class="row_1">
+			<div class="row" v-else>
+				<div class="col-4 col-12-medium">
+					<div class="col-2 col-12-xsmall">
+						<input type="text" v-model="recommend1" style="width: 60%;" disabled/>
+					</div>
+					<div class="col-2 col-12-xsmall">
+						<input type="text" v-model="recommend2" style="width: 60%;" disabled/>
+					</div>
+					<div class="col-2 col-12-xsmall">
+						<input type="text" v-model="recommend3" style="width: 60%;" disabled/>
+					</div>
+					<div class="col-2 col-12-xsmall">
+						<input type="text" v-model="recommend4" style="width: 60%;" disabled/>
+					</div>
+				</div>
+			</div>
+			<div class="row_1" v-if="innerWidth > 980">
 				<header>
-					<h2>인기메뉴</h2>
-					<table>
-						<tr>
-							<td><img id="bestmenu" src="/assets/css/images/sushi.png"></td><td><img id="bestmenu" src="/assets/css/images/beannoodle.png"></td><td><img id="bestmenu" src="/assets/css/images/budae.png"></td><td><img id="bestmenu" src="/assets/css/images/cake.png"></td>
-						</tr>		
-					</table>	
+				<h2>인기메뉴</h2>
+				<table>
+					<tr>
+						<td><img src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td>
+						<td><img src="/assets/css/images/beannoodle.png"></td>
+						<td><img src="/assets/css/images/budae.png"></td>
+						<td><img src="/assets/css/images/cake.png"></td>
+					</tr>
+				</table>	
+				</header>
+			</div>
+			<div class="row_1" v-else>
+				<header>
+				<h2>인기메뉴</h2>
+				<table>
+					<tr>
+						<td><img src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td><td><img src="/assets/css/images/beannoodle.png"></td>
+					</tr>
+					<tr>
+						<td><img src="/assets/css/images/budae.png"></td><td><img src="/assets/css/images/cake.png"></td>
+					</tr>
+				</table>	
 				</header>
 			</div>
 		</div>
 	</section>
+	<TeleportModal v-if="modalOpen">
+		<ModalFoodDetail @closeModal="closeModal"></ModalFoodDetail>
+	</TeleportModal>
 </template>
 
 <script setup>
+	// 컴포넌트
+	import TeleportModal from '@/components/modal/TeleportModal';
+	import ModalFoodDetail from '@/components/modal/ModalFoodDetail';
 	// 내장 라이브러리
 	import { onMounted, ref } from 'vue';
 	// api
@@ -58,9 +102,28 @@
 		})
 	}
 
+	const modalOpen = ref(false);
+
+	// 음식 상세 모달
+	const openModalFoodDetail = () => {
+		modalOpen.value = true;
+	};
+	
+	// 음식 모달 닫기
+	const closeModal = () => {
+		modalOpen.value = false;
+	}
+
+	// 넓이
+	const innerWidth = ref();
+
 	// 페이지 접속
 	onMounted(() => {
 		fetchRecommendWord();
+		innerWidth.value = window.innerWidth;
+		window.addEventListener('resize', () => {
+			innerWidth.value = window.innerWidth;
+		})
 	});
 </script>
 
