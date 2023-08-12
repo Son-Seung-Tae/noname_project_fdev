@@ -43,9 +43,9 @@
 				<table class="img_all">
 					<tr>
 						<td><img class=img_size src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td>
-						<td><img class=img_size src="/assets/css/images/beannoodle.png"></td>
-						<td><img class=img_size src="/assets/css/images/budae.png"></td>
-						<td><img class=img_size src="/assets/css/images/cake.png"></td>
+						<td><img class=img_size src="/assets/css/images/beannoodle.png" @click="openModalFoodDetail()"></td>
+						<td><img class=img_size src="/assets/css/images/budae.png" @click="openModalFoodDetail()"></td>
+						<td><img class=img_size src="/assets/css/images/cake.png" @click="openModalFoodDetail()"></td>
 					</tr>
 				</table>	
 				</header>
@@ -55,10 +55,10 @@
 				<h2>인기메뉴</h2>
 				<table>
 					<tr>
-						<td><img src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td><td><img src="/assets/css/images/beannoodle.png"></td>
+						<td><img src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td><td><img src="/assets/css/images/beannoodle.png" @click="openModalFoodDetail()"></td>
 					</tr>
 					<tr>
-						<td><img src="/assets/css/images/budae.png"></td><td><img src="/assets/css/images/cake.png"></td>
+						<td><img src="/assets/css/images/budae.png" @click="openModalFoodDetail()"></td><td><img src="/assets/css/images/cake.png" @click="openModalFoodDetail()"></td>
 					</tr>
 				</table>	
 				</header>

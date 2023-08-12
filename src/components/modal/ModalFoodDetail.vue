@@ -7,7 +7,7 @@
                         <p style="cursor: pointer;" @click="$emit('closeModal')">X</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row modal-body">
                     <div class="col-6">
                         <div class="modal-image">
                             <img class="modal-image" src="/assets/css/images/sushi.png">
@@ -44,6 +44,9 @@
     const props = defineProps(['order', 'deliveryList', 'mode']); 
     const emit = defineEmits(['closeModal']);
     const store = useModalStore();
+
+    // 상품 상세api 필요
+    
  
     onMounted(() => {
         console.log('modal11111');
@@ -86,7 +89,14 @@
         color: black;
         display: flex;
         justify-content: flex-end;
+    }
 
+    .modal-body {
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center; */
+        display: grid;
+        grid-template-columns: 50% 50%;
     }
 
     .modal-image img{
@@ -98,15 +108,38 @@
         float: right;
     }
 
-    .modal-info-title {
-        height: 10%;
+    .temp-box {
+        background: yellow;
+        width: 100%;
+        height: 100%;
+        font-size: 40px;
+        border: 1px solid #dee3eb;
+        text-align: center;
     }
-    .modal-info-content {
-        height: 20%;
+    .box-three {
+        display: flex;
+        flex-direction: column; /* 세로 정렬 */
+        border: none; /* border를 지우고 3-1과 3-2에 각각 border를 적용해줍니다. */
+        width: 100%;
     }
-    .modal-info-graph {
-        height: 70%;
+    .box-three > div:first-child {
+        width: 100%;
+        flex: 1; /* 공간차지비율 */
     }
+    .modal-info {
+        display: grid;
+        flex-direction: row;
+        grid-template-rows: 15% 25% 60%;
+    }
+    /* .modal-info > .modal-info-title {
+        flex: 1;
+    }
+    .modal-info > .modal-info-content {
+        flex: 3;
+    }
+    .modal-info > .modal-info-graph {
+        flex: 6;
+    } */
 
     /*
     * The following styles are auto-applied to elements with
