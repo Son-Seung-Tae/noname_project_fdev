@@ -1,6 +1,10 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
 
+@font-face {
+	font-family: "dongle";
+	src : url("../webfonts/Dongle-Regular.ttf");
+}
 /*
 	Landed by HTML5 UP
 	html5up.net | @ajlkn
@@ -736,7 +740,7 @@ input, select, textarea {
 		}
 
 		.row > .col-2 {
-			width: 16.66667%;
+			width: 25%;
 		}
 
 		.row > .off-2 {
@@ -876,11 +880,11 @@ input, select, textarea {
 
 		.row {
 			margin-top: 0;
-			margin-left: -2.5em;
+			margin-left: 0;
 		}
 
 			.row > * {
-				padding: 0 0 0 2.5em;
+				padding: 0 5rem 0 0;
 			}
 
 			.row.gtr-uniform {
@@ -2290,7 +2294,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 3em;
+		height: 12rem;
 		color: rgba(0, 0, 0, 0.75);
 		font-weight: 500;
 	}

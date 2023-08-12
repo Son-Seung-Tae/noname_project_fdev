@@ -38,14 +38,14 @@
 				</div>
 			</div>
 			<div class="row_1" v-if="innerWidth > 980">
-				<header>
+				<header id="second_header">
 				<h2>인기메뉴</h2>
-				<table>
+				<table class="img_all">
 					<tr>
-						<td><img src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td>
-						<td><img src="/assets/css/images/beannoodle.png"></td>
-						<td><img src="/assets/css/images/budae.png"></td>
-						<td><img src="/assets/css/images/cake.png"></td>
+						<td><img class=img_size src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td>
+						<td><img class=img_size src="/assets/css/images/beannoodle.png"></td>
+						<td><img class=img_size src="/assets/css/images/budae.png"></td>
+						<td><img class=img_size src="/assets/css/images/cake.png"></td>
 					</tr>
 				</table>	
 				</header>
@@ -132,17 +132,33 @@
 		padding-top: 50px;
 	}
 	
-	table {
-		width: 300px;
-		
-	}
 	
 	.content {
-		padding-left: 50px;
+		padding-left: 80px;
 		padding-top: 80px;
 	}
 	
 	#bestmenu {
 		width:300px;
 	}
+
+	.img_size {
+		width: 400px;
+		height: 400px;
+		padding-top: 0.5rem;
+	}
+
+	#second_header {
+		padding-top:20px;
+	}
+
+	@media screen and (max-width: 1680px) {
+        
+		.content {
+			padding-left:60px;
+			padding-top: 80px;
+		}
+
+    }
+
 </style>

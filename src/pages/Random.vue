@@ -1,143 +1,92 @@
 <template>
-    <div class="random_title">
-        <h1 id="random_text">추천 결과</h1>
-    </div>
-    <div class="random_image">
-        <img class="random_img" src="/assets/css/images/chicken.png">
-    </div>
-    <div class="random_comment">
-        <h1 class="random_cmt">치킨은 언제나 옳다!</h1>
-    </div>
-    <div id="random_button">
-       <button class="random_bt1" v-on:click="addtodo">다시검색</button> 
-       <button class="random_bt2" v-on:click="addtodo">재추천</button>
-    </div>
+   <div id="random">
+        <img class="random_img" src="/assets/css/images/randombox.png" @click="openModalFoodDetail()">
+        <h1 class=random_text>랜덤 메뉴 추첨을 위해 박스를 눌러주세요</h1>
+   </div>
+   <TeleportModal v-if="modalOpen">
+		<ModalFoodDetail @closeModal="closeModal"></ModalFoodDetail>
+	</TeleportModal>
 </template>
     
-<script>
-        export default {
-            name: 'random',
-            components: {
-                
-            }
-        }
+<script setup>
+       
+
+        // 컴포넌트
+	import TeleportModal from '@/components/modal/TeleportModal';
+	import ModalFoodDetail from '@/components/modal/ModalFoodDetail';
+	// 내장 라이브러리
+	import { onMounted, ref } from 'vue';
+	// api
+	import { recommendWord } from '@/api/api';
+
+	// v-model
+	const recommend1 = ref();
+	const recommend2 = ref();
+	const recommend3 = ref();
+	const recommend4 = ref();
+	// 추천 검색어
+	const fetchRecommendWord = () => {
+		recommendWord(
+
+		)
+		.then((res) => {
+			console.log(res.data);
+			recommend1.value = res.data[0].rcmd_word;
+			recommend2.value = res.data[1].rcmd_word;
+			recommend3.value = res.data[2].rcmd_word;
+			recommend4.value = res.data[3].rcmd_word;
+		})
+		.catch((err) => {
+			window.alert('오류가 발생했습니다.');
+			console(err);
+		})
+	}
+
+	const modalOpen = ref(false);
+
+	// 음식 상세 모달
+	const openModalFoodDetail = () => {
+		modalOpen.value = true;
+	};
+	
+	// 음식 모달 닫기
+	const closeModal = () => {
+		modalOpen.value = false;
+	}
+
+	// 넓이
+	const innerWidth = ref();
+
+	// 페이지 접속
+	onMounted(() => {
+		fetchRecommendWord();
+		innerWidth.value = window.innerWidth;
+		window.addEventListener('resize', () => {
+			innerWidth.value = window.innerWidth;
+		})
+	});
+        
 </script>
 
  <style>
-#random_text{
-    text-align: center;
-    padding-top: 150px;
-    font-size: x-large;
-}
-.random_img {
-   margin: auto;
-   padding-top:30px;
-   display: block; 
-   width: 350px;
-   height: 250px;
-}
-.random_cmt {
-    text-align: center;
-    font-size: large;
-    padding-top: 0;
-}
-.random_bt1 {
-    /* Group 1 */
+    .random_img {
+        width: 450px;
+       
+    }
+    
+    #random {
+        text-align: center;
+        margin-top: 20rem;
+    }
 
-
-width: 150px;
-height: 44px;
+    .random_text {
+        text-align: center;
+        font-size: xx-large;
+        line-height: 5rem;
+    }
+    
 
 
 
-/* Group 1 */
 
-
-width: 150px;
-height: 44px;
-
-
-
-/* Rectangle 9 */
-
-
-width: 150px;
-height: 44px;
-
-background: #FEA1A1;
-border-radius: 13px;
-
-
-/* 다시 검색 */
-
-
-width: 128.78px;
-height: 38px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 22px;
-
-align-items: center;
-text-align: center;
-
-color: #000000;
-margin-right: 10px;
-
-}
-
-.random_bt2 {
-    /* Group 1 */
-
-
-width: 150px;
-height: 44px;
-
-
-
-/* Group 1 */
-
-
-width: 150px;
-height: 44px;
-
-
-
-/* Rectangle 9 */
-
-
-width: 150px;
-height: 44px;
-
-background: #FEA1A1;
-border-radius: 13px;
-
-
-/* 다시 검색 */
-
-
-width: 128.78px;
-height: 38px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 22px;
-
-align-items: center;
-text-align: center;
-
-color: #000000;
-
-
-}
-#random_button {
-   display:flex;
-   padding-top: 100px;
-   width: 267.54px;
-   margin: auto;
-}
 </style>

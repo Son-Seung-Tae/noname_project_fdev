@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 id="search_list">오 밥 무?</h1>
+        <h1 id="search_list">오늘 밥 뭐먹지?</h1>
     </div>
     <div id="search_fn">
         <input id=search_css type="text" v-model="search">
@@ -18,21 +18,23 @@
 
  <style>
  #search_list {
-    padding-top:100px;
+    padding-top:80px;
     text-align: center;
-    height:200px;
+    height: 300px;
+    line-height: 500px;
     /* 오 밥 무? */
-    font-family: 'Dongle';
+    font-family: 'dongle';
     font-style: normal;
     font-weight: 400;
-    font-size: 40px;
-    line-height: 300px;
+    font-size: 50px;
+    
+    
     /* identical to box height */
 
     color: #000000;
     }
 
-#search_css {
+    #search_css {
         /* Rectangle 8 */
 
 box-sizing: border-box;
