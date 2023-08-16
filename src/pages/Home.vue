@@ -143,8 +143,8 @@
 	}
 
 	.img_size {
-		width: 400px;
-		height: 400px;
+		width: 370px;
+		height: 370px;
 		padding-top: 0.5rem;
 	}
 
@@ -159,6 +159,60 @@
 			padding-top: 80px;
 		}
 
+		.img_size {
+			width: 300px;
+			height: 300px;
+			padding-top: 0.5rem;
+			padding-right: 5em;
+		}
+
+		table {
+    	margin: 0 0 2em 0;
+    
+		}
     }
+
+	@media screen and (max-width: 1380px) {
+
+		h2 {
+			font-size: 1.2em;
+			line-height: 1.2em;
+			letter-spacing: -0.025em;
+		}
+
+		#main {
+			width: 100%;
+			height: 100%;
+			padding-top: 60px;
+		}
+
+		.content {
+			padding-left: 50px;
+			padding-top: 40px;
+		}
+
+		input[type="text"] {
+			height: 8rem;
+			color: rgba(0, 0, 0, 0.75);
+			font-weight: 500;
+		}
+
+		table {
+			margin: 0 0 2em 0;
+			
+		}
+
+		.img_size {
+			width: 230px;
+			height: 230px;
+			padding-top: 0.5rem;
+			padding-right: 4em;
+		}
+
+		.row_1 {
+			padding-top: 30px;
+		}
+
+}
 
 </style>

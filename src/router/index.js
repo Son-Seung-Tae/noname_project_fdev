@@ -37,6 +37,12 @@ const routes = [
         path: '/:pathMatch(.*)',
         redirect: '404'
     },
+    {
+        // Making.vue
+        path: '/Making',
+        name: 'Making',
+        component: () => import('../pages/Making.vue'),
+    },
 ]
 
 const router = createRouter({

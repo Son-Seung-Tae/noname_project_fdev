@@ -70,7 +70,7 @@
 
  <style>
     .random_img {
-        width: 450px;
+        width: 250px;
        
     }
     
@@ -81,12 +81,40 @@
 
     .random_text {
         text-align: center;
-        font-size: xx-large;
+        font-size: x-large;
         line-height: 5rem;
     }
     
+	@media screen and (max-width: 1680px) {
+        
+		.random_img {
+        width: 220px;
+       
+    	}
+
+    }
+
+	@media screen and (max-width: 1380px) {
+
+		#random {
+			text-align: center;
+			margin-top: 12rem;
+		}
 
 
+		.random_img {
+			width: 180px;
+		}
+
+
+		.random_text {
+			text-align: center;
+			font-size: large;
+			line-height: 5rem;
+		}
+
+		
+}
 
 
 </style>
