@@ -42,13 +42,7 @@
 
 	// Nav.
 
-		// Title Bar.
-			$(
-				'<div id="titleBar">' +
-					'<span class="title"><a href="/"><img src="/assets/css/images/logoIcon.png"></a></span>' +
-				'</div>'
-			)
-				.appendTo($body);
+	
 
 		// Panel.
 			$(

@@ -10,6 +10,12 @@
                 </div>
         </div>
     </header>
+    <div id="mobile_titleBar">
+        <div id="titleBar">
+            <span class="title"><a href="/"><img class='Homeicon_img' src="/assets/css/images/logoIcon.png"></a></span>
+        </div>
+    </div>
+    
 </template>
 
 <script>
@@ -111,4 +117,45 @@
             width: 60%;
         }
 }
+
+    @media screen and (max-width: 1024px) {
+        
+        #header {
+            display:none;
+        }
+
+    }
+
+    @media screen and (max-width: 1024px) {
+        
+		#titleBar {
+			-moz-backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-moz-transition: -moz-transform 0.5s ease;
+			-webkit-transition: -webkit-transform 0.5s ease;
+			-ms-transition: -ms-transform 0.5s ease;
+			transition: transform 0.5s ease;
+			display: block;
+			height: 70px;
+			left: 0;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 10001;
+			background: #FCAEAE;
+			box-shadow: 0 0.125em 0.125em 0 rgba(0, 0, 0, 0.25);
+		}
+        
+        .Homeicon_img {
+            height: 40px;
+            width: 40px;
+            margin-left: 1em;
+            padding-top: 15px;
+        }
+
+        
+    }
+    
  </style>

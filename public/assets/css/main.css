@@ -3310,6 +3310,15 @@ input, select, textarea {
 		display: none;
 	}
 
+	
+
+		#navPanel {
+			display:block;
+		}
+        
+
+    
+
 	@media screen and (max-width: 736px) {
 
 		/* Basic */

@@ -37,9 +37,32 @@
     }
 
     @media screen and (max-width: 1024px) {
-        #footer {
-            display:block;
+        #footer {            
+            display: block;
+            background: #FCAEAE;
+            padding: 0;
+            text-align: center;
+            box-shadow: 0 0 0.25em 0 rgba(0, 0, 0, 0.25);
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100px;
+            z-index: 100;
         }
+    
+        ul.icons li {
+            display: inline-block;
+            height: 28px;
+            line-height: 2.5em;
+            padding: 0 0.5em;
+            flex: 1;
+            padding-top: 36px;
+        }
+        
+       
 
-}
+        
+
+    }
 </style>
