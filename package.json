@@ -15,7 +15,8 @@
     "core-js": "^3.8.3",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "vue3-charts": "^1.1.33"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

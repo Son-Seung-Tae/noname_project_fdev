@@ -39,15 +39,18 @@
 			</div>
 			<div class="row_1" v-if="innerWidth > 980">
 				<header id="second_header">
-				<h2>인기메뉴</h2>
-				<table class="img_all">
-					<tr>
-						<td><img class=img_size src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td>
-						<td><img class=img_size src="/assets/css/images/beannoodle.png" @click="openModalFoodDetail()"></td>
-						<td><img class=img_size src="/assets/css/images/budae.png" @click="openModalFoodDetail()"></td>
-						<td><img class=img_size src="/assets/css/images/cake.png" @click="openModalFoodDetail()"></td>
-					</tr>
-				</table>	
+					<h2>인기메뉴</h2>
+					<table class="img_all">
+						<tr>
+							<td v-for="item in foodImgList">
+								<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+							</td>
+
+							<!-- <td><img class=img_size src="/assets/css/images/beannoodle.png" @click="openModalFoodDetail()"></td>
+							<td><img class=img_size src="/assets/css/images/budae.png" @click="openModalFoodDetail()"></td>
+							<td><img class=img_size src="/assets/css/images/cake.png" @click="openModalFoodDetail()"></td> -->
+						</tr>
+					</table>	
 				</header>
 			</div>
 			<div class="row_1" v-else>
@@ -66,7 +69,7 @@
 		</div>
 	</section>
 	<TeleportModal v-if="modalOpen">
-		<ModalFoodDetail @closeModal="closeModal"></ModalFoodDetail>
+		<ModalFoodDetail @closeModal="closeModal" :food_id="food_id"></ModalFoodDetail>
 	</TeleportModal>
 </template>
 
@@ -77,7 +80,7 @@
 	// 내장 라이브러리
 	import { onMounted, ref } from 'vue';
 	// api
-	import { recommendWord } from '@/api/api';
+	import { recommendWord, getMainFood } from '@/api/api';
 
 	// v-model
 	const recommend1 = ref();
@@ -90,7 +93,6 @@
 
 		)
 		.then((res) => {
-			console.log(res.data);
 			recommend1.value = res.data[0].rcmd_word;
 			recommend2.value = res.data[1].rcmd_word;
 			recommend3.value = res.data[2].rcmd_word;
@@ -102,15 +104,33 @@
 		})
 	}
 
+	const foodImgList = ref([]);
+	// 메인 음식
+	const fetchRMainFood = () => {
+		getMainFood(
+
+		)
+		.then((res) => {
+			foodImgList.value = res.data;
+		})
+		.catch((err) => {
+			window.alert('오류가 발생했습니다.');
+			console(err);
+		})
+	}
+
 	const modalOpen = ref(false);
 
+	const food_id = ref(0);
 	// 음식 상세 모달
-	const openModalFoodDetail = () => {
+	const openModalFoodDetail = (id) => {
+		food_id.value = id;
 		modalOpen.value = true;
 	};
 	
 	// 음식 모달 닫기
 	const closeModal = () => {
+		food_id.value = 0;
 		modalOpen.value = false;
 	}
 
@@ -120,6 +140,7 @@
 	// 페이지 접속
 	onMounted(() => {
 		fetchRecommendWord();
+		fetchRMainFood();
 		innerWidth.value = window.innerWidth;
 		window.addEventListener('resize', () => {
 			innerWidth.value = window.innerWidth;

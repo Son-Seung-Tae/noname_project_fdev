@@ -10,16 +10,16 @@
                 <div class="row modal-body">
                     <div class="col-6">
                         <div class="modal-image">
-                            <img class="modal-image" src="/assets/css/images/sushi.png">
+                            <img class="modal-image" :src="image">
                         </div>
                     </div>
                     <div class="modal_text">
                         <div class="modal-info">
                             <div class="modal-info-title">
-                                <h2 class="text_1">초밥</h2>
+                                <h2 class="text_1">{{ title }}</h2>
                             </div>
                             <div class="modal-info-content">
-                                <h2 class="text_2">프레쉬한 음식이 땡길 땐 초밥!<br>밥 알이 몇개고?</h2>
+                                <h2 class="text_2">{{ content }}</h2>
                             </div>
                             <div class="modal-info-graph">
                                 <canvas id="myChart"></canvas>
@@ -35,100 +35,129 @@
  <script setup>
     //chart.js 
     import Chart from 'chart.js/auto';
+    // import { Radar } from 'vue3-charts';
     // uitl 스크립트 라이브러리
     import { ref, computed, defineEmits, defineProps, onMounted } from 'vue';
     import { useModalStore } from '@/stores/modal';
+    // api
+	import { getFoodDetail } from '@/api/api';
+    
     // pinia
     // import { useViewStore } from '@/stores/view';
     
  
     // const viewStore = useViewStore();
-    const props = defineProps(['order', 'deliveryList', 'mode']); 
+    const props = defineProps(['food_id']); 
     const emit = defineEmits(['closeModal']);
     const store = useModalStore();
 
-    // 상품 상세api 필요
-    
- 
-    onMounted(() => {
-        console.log('modal11111');
-        console.log(props);
-        console.log('modal11111');
-    });
+    // param
+    const food_id = ref(0);
+    const image = ref();
+    const title = ref();
+    const content = ref();
+    const flavor = ref(0);
+    const price = ref(0);
+    const famous = ref(0);
 
+    // 상품 상세api
+    const fetchFoodDetail = () => {
+        // validate
+        if (!food_id.value) {
+            return;
+        }
+
+        getFoodDetail({
+            id: food_id.value
+        })
+		.then((res) => {
+			console.log(res.data);
+            image.value = res.data.image;
+            title.value = res.data.name;
+            content.value = res.data.name; // 상세 정보 api에 없음
+            flavor.value = Number(res.data.flavor);
+            price.value = Number(res.data.price);
+            famous.value = Number(res.data.famous);
+
+            // chart
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+		})
+		.catch((err) => {
+			window.alert('오류가 발생했습니다.');
+			console(err);
+		})
+    }
     
     //chart.js 삼각형 차트
     const data = {
-  labels: [
-    '맛','가격','인기도'
-    ],
+        labels: [
+            '맛','가격','인기도'
+        ],
 
-    datasets: [{
-    label: '추천정도',
-    data: [
-        90,
-        40,
-        80
-    ],
-    fill: true,
-    backgroundColor: 'rgba(255, 99, 132, 0.2)',    
-    borderColor: 'rgb(255, 99, 132)',
-    pointBackgroundColor: 'rgb(255, 99, 132)',
-    pointBorderColor: '#fff',
-    pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgb(255, 99, 132)'
-  }, ]
-};
+        datasets: [{
+            label: '추천정도',
+            data: [
+                Number(flavor.value),
+                Number(price.value),
+                Number(famous.value),
+            ],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',    
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }, ]
+    };
 
-//차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
-  const config = {
-  type: 'radar',
-  data: data,
-  options: {
-    animations: {
-      tension: {
-        duration: 800,
-        easing: 'easeOutExpo',
-        from: 1,
-        to: 0,
-        loop: true
-      }
-    },
-    //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
-    scales: {
-        r:{
-            min:0,
-            max:100
-        }
-    },
-    plugins: {
-            legend: {
-                
-                labels: {
-                    // This more specific font property overrides the global property
-                    font: {
-                        size: 20
-                    }
-                }
+    //차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
+    const config = {
+        type: 'radar',
+        data: data,
+        options: {
+            animations: {
+            tension: {
+                duration: 800,
+                easing: 'easeOutExpo',
+                from: 1,
+                to: 0,
+                loop: true
             }
+            },
+            //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
+            scales: {
+                r:{
+                    min:0,
+                    max:10
+                }
+            },
+            plugins: {
+                    legend: {
+                        
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                },
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            },
         },
-    elements: {
-      line: {
-        borderWidth: 3
-      }
-    },
+    };
     
-  },
-  
-};
-
-
-  onMounted(() => {
-  const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-  );
-  })
+    onMounted(() => {
+        food_id.value = props.food_id;
+        fetchFoodDetail();
+    });
 
  </script>
  
