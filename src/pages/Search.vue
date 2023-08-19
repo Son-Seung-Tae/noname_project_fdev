@@ -88,7 +88,7 @@ color: black;
 
 }
 
-@media screen and (max-width: 1380px) {
+@media screen and (max-width: 1440px) {
 
         #search_css {
             box-sizing: border-box;

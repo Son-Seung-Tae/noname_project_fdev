@@ -3,8 +3,8 @@
         <div class="modal-wrapper">
             <div class="modal-container">
                 <div class="row modal-header">
-                    <div>
-                        <p style="cursor: pointer;" @click="$emit('closeModal')">X</p>
+                    <div class="cursor">
+                        <p  class="cursor_icon" style="cursor: pointer;" @click="$emit('closeModal')">X</p>
                     </div>
                 </div>
                 <div class="row modal-body">
@@ -13,17 +13,17 @@
                             <img class="modal-image" src="/assets/css/images/sushi.png">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="modal_text">
                         <div class="modal-info">
                             <div class="modal-info-title">
-                                <h2>초밥</h2>
+                                <h2 class="text_1">초밥</h2>
                             </div>
                             <div class="modal-info-content">
-                                <h2>초밥 내용</h2>
+                                <h2 class="text_2">프레쉬한 음식이 땡길 땐 초밥!<br>밥 알이 몇개고?</h2>
                             </div>
                             <div class="modal-info-graph">
-                                <h2>초밥 그래프</h2>
-                            </div>
+                                <canvas id="myChart"></canvas>
+                            </div>                         
                         </div>
                     </div>
                 </div>
@@ -33,6 +33,8 @@
  </template>
  
  <script setup>
+    //chart.js 
+    import Chart from 'chart.js/auto';
     // uitl 스크립트 라이브러리
     import { ref, computed, defineEmits, defineProps, onMounted } from 'vue';
     import { useModalStore } from '@/stores/modal';
@@ -53,7 +55,83 @@
         console.log(props);
         console.log('modal11111');
     });
+
+    
+    //chart.js 삼각형 차트
+    const data = {
+  labels: [
+    '맛','가격','인기도'
+    ],
+
+    datasets: [{
+    label: '추천정도',
+    data: [
+        90,
+        40,
+        80
+    ],
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',    
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }, ]
+};
+
+//차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
+  const config = {
+  type: 'radar',
+  data: data,
+  options: {
+    animations: {
+      tension: {
+        duration: 800,
+        easing: 'easeOutExpo',
+        from: 1,
+        to: 0,
+        loop: true
+      }
+    },
+    //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
+    scales: {
+        r:{
+            min:0,
+            max:100
+        }
+    },
+    plugins: {
+            legend: {
+                
+                labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 20
+                    }
+                }
+            }
+        },
+    elements: {
+      line: {
+        borderWidth: 3
+      }
+    },
+    
+  },
+  
+};
+
+
+  onMounted(() => {
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+  })
+
  </script>
+ 
  
  <style scoped>
     .modal-mask {
@@ -74,12 +152,12 @@
     }
 
     .modal-container {
-        width: 60%;
+        width: 62%;
         height: 70%;
         margin: 0rem auto;
         padding: 1rem 1rem;
         background-color: #F9FBE7;
-        border-radius: 0.2rem;
+        border-radius: 2rem;
         box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.33);
         transition: all 0.3s ease;
         font-family: Helvetica, Arial, sans-serif;
@@ -102,6 +180,9 @@
     .modal-image img{
         height: 60%;
         weight: 60%;
+        width: 600px;
+        padding-left: 50px;
+        padding-top: 12px;
     }
 
     .modal-default-button {
@@ -129,7 +210,7 @@
     .modal-info {
         display: grid;
         flex-direction: row;
-        grid-template-rows: 15% 25% 60%;
+        /*grid-template-rows: 15% 25% 60%;*/
     }
     /* .modal-info > .modal-info-title {
         flex: 1;
@@ -164,4 +245,97 @@
         transform: scale(1.1);
     }
 
+    .cursor {
+        padding-right: 2rem;
+    }
+
+    .cursor_icon {
+        margin: 0 0 0 0;
+        color: #110303;
+        font-size: x-large;
+        
+    }
+
+    .modal_text {
+        padding-left: 4rem;
+    }
+
+    .text_1 {
+        margin-left: 60px;
+        height: 2em;
+        font-weight: 800;
+        padding-top: 0.4em;
+        font-size: 2.5em;
+    }
+
+    .text_2 {
+        margin-left: 60px;
+        font-weight: normal;
+        font-size: 1.8em;
+        height: 3.5em;
+    }
+
+    .text_3 {
+        margin-left:2em;
+    }
+    
+    .modal-info-graph {
+        margin-left:2em;
+        
+    }
+    
+    @media screen and (max-width: 1680px) {
+        
+        .modal-image img{
+            height: 60%;
+            weight: 60%;
+            width: 500px;
+            padding-left: 50px;
+            padding-top: 12px;
+    }
+		
+        .text_1 {
+            margin-left: 40px;
+            height: 2em;
+            font-weight: 800;
+            padding-top: 0.4em;
+            font-size: 2.2em;
+        }
+    
+        .text_2 {
+            margin-left: 40px;
+            font-weight: normal;
+            font-size: 1.5em;
+            height: 3.5em;
+        }
+    
+	}
+
+    @media screen and (max-width: 1440px) {
+        
+        .modal-image img{
+            height: 60%;
+            weight: 60%;
+            width: 450px;
+            padding-left: 40px;
+            padding-top: 12px;
+    }
+		
+        .text_1 {
+            margin-left: 30px;
+            height: 2em;
+            font-weight: 800;
+            padding-top: 0.4em;
+            font-size: 2em;
+        }
+    
+        .text_2 {
+            margin-left: 30px;
+            font-weight: normal;
+            font-size: 1.3em;
+            height: 3.5em;
+        }
+    
+	}
+    
  </style>

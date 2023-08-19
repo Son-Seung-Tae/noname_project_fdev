@@ -94,11 +94,11 @@
 
     }
 
-	@media screen and (max-width: 1380px) {
+	@media screen and (max-width: 1440px) {
 
 		#random {
 			text-align: center;
-			margin-top: 12rem;
+			
 		}
 
 

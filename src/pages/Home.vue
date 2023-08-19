@@ -172,7 +172,7 @@
 		}
     }
 
-	@media screen and (max-width: 1380px) {
+	@media screen and (max-width: 1440px) {
 
 		h2 {
 			font-size: 1.2em;
@@ -188,7 +188,7 @@
 
 		.content {
 			padding-left: 50px;
-			padding-top: 40px;
+			padding-top: 60px;
 		}
 
 		input[type="text"] {
@@ -203,14 +203,18 @@
 		}
 
 		.img_size {
-			width: 230px;
-			height: 230px;
-			padding-top: 0.5rem;
+			width: 260px;
+			height: 260px;
+			padding-top: 0.5em;
 			padding-right: 4em;
 		}
 
 		.row_1 {
 			padding-top: 30px;
+		}
+		
+		#second_header {
+			padding-top: 50px;
 		}
 
 }

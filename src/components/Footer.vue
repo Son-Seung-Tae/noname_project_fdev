@@ -35,4 +35,11 @@
         text-align: center; 
         padding-top: 13px; 
     }
+
+    @media screen and (max-width: 1024px) {
+        #footer {
+            display:block;
+        }
+
+}
 </style>
