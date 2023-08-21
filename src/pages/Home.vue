@@ -40,30 +40,25 @@
 			<div class="row_1" v-if="innerWidth > 980">
 				<header id="second_header">
 					<h2>인기메뉴</h2>
-					<table class="img_all">
+					<!-- <table>
 						<tr>
 							<td v-for="item in foodImgList">
 								<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
 							</td>
-
-							<!-- <td><img class=img_size src="/assets/css/images/beannoodle.png" @click="openModalFoodDetail()"></td>
-							<td><img class=img_size src="/assets/css/images/budae.png" @click="openModalFoodDetail()"></td>
-							<td><img class=img_size src="/assets/css/images/cake.png" @click="openModalFoodDetail()"></td> -->
 						</tr>
-					</table>	
+					</table>	 -->
+					<div style="display:inline;" v-for="item in foodImgList">
+						<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+					</div>
 				</header>
 			</div>
 			<div class="row_1" v-else>
 				<header>
 				<h2>인기메뉴</h2>
-				<table>
-					<tr>
-						<td><img src="/assets/css/images/sushi.png" @click="openModalFoodDetail()"></td><td><img src="/assets/css/images/beannoodle.png" @click="openModalFoodDetail()"></td>
-					</tr>
-					<tr>
-						<td><img src="/assets/css/images/budae.png" @click="openModalFoodDetail()"></td><td><img src="/assets/css/images/cake.png" @click="openModalFoodDetail()"></td>
-					</tr>
-				</table>	
+					<div style="display:inline;" v-for="(item, index) in foodImgList">
+						<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+						<br v-if="index % 2 == 1"/>
+					</div>
 				</header>
 			</div>
 		</div>
