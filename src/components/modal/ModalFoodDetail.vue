@@ -22,7 +22,8 @@
                                 <h2 class="text_2">{{ content }}</h2>
                             </div>
                             <div class="modal-info-graph">
-                                <canvas id="myChart"></canvas>
+                                <!-- <canvas id="myChart"></canvas> -->
+                                <RadarChart :options="radarOptions" :chartData="chartData"></RadarChart>
                             </div>                         
                         </div>
                     </div>
@@ -34,8 +35,9 @@
  
  <script setup>
     //chart.js 
-    import Chart from 'chart.js/auto';
+    import { Chart, registerables } from 'chart.js';
     // import { Radar } from 'vue3-charts';
+    import { RadarChart } from 'vue-chart-3';
     // uitl 스크립트 라이브러리
     import { ref, computed, defineEmits, defineProps, onMounted } from 'vue';
     import { useModalStore } from '@/stores/modal';
@@ -45,6 +47,7 @@
     // pinia
     // import { useViewStore } from '@/stores/view';
     
+    Chart.register(...registerables);
  
     // const viewStore = useViewStore();
     const props = defineProps(['food_id']); 
@@ -60,6 +63,9 @@
     const price = ref(0);
     const famous = ref(0);
 
+    const chartData = ref([]);
+    const radarOptions = ref([]);
+
     // 상품 상세api
     const fetchFoodDetail = () => {
         // validate
@@ -74,68 +80,60 @@
 			console.log(res.data);
             image.value = res.data.image;
             title.value = res.data.name;
-            content.value = res.data.name; // 상세 정보 api에 없음
             flavor.value = Number(res.data.flavor);
             price.value = Number(res.data.price);
             famous.value = Number(res.data.famous);
 
-            // chart
-            const myChart = new Chart(
-                document.getElementById('myChart'),
-                config
-            );
-		})
-		.catch((err) => {
-			window.alert('오류가 발생했습니다.');
-			console(err);
-		})
-    }
-    
-    //chart.js 삼각형 차트
-    const data = {
-        labels: [
-            '맛','가격','인기도'
-        ],
+            let content_arr = "";
 
-        datasets: [{
-            label: '추천정도',
-            data: [
-                Number(flavor.value),
-                Number(price.value),
-                Number(famous.value),
-            ],
-            fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',    
-            borderColor: 'rgb(255, 99, 132)',
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 99, 132)'
-        }, ]
-    };
+            res.data.food_tag.forEach((element) => {
+                content_arr += element.tag_comment + " \n";
+            });
+            
+            content.value = content_arr; // 내용
 
-    //차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
-    const config = {
-        type: 'radar',
-        data: data,
-        options: {
-            animations: {
-            tension: {
-                duration: 800,
-                easing: 'easeOutExpo',
-                from: 1,
-                to: 0,
-                loop: true
-            }
-            },
-            //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
-            scales: {
-                r:{
-                    min:0,
-                    max:10
+            // chart data
+            chartData.value = {
+                labels: [
+                    '맛','가격','인기도'
+                ],
+
+                datasets: [{
+                    label: '추천정도',
+                    data: [
+                        Number(flavor.value),
+                        Number(price.value),
+                        Number(famous.value),
+                    ],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',    
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }, ]
+            };
+
+            //차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
+            radarOptions.value = {
+                animations: {
+                tension: {
+                    duration: 800,
+                    easing: 'easeOutExpo',
+                    from: 1,
+                    to: 0,
+                    loop: true
                 }
-            },
-            plugins: {
+                },
+                //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
+                scales: {
+                    r:{
+                        min:0,
+                        max:5
+                    }
+                },
+                plugins: {
                     legend: {
                         
                         labels: {
@@ -146,13 +144,18 @@
                         }
                     }
                 },
-            elements: {
-                line: {
-                    borderWidth: 3
-                }
-            },
-        },
-    };
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+            };
+		})
+		.catch((err) => {
+			window.alert('오류가 발생했습니다.');
+			console(err);
+		})
+    }
     
     onMounted(() => {
         food_id.value = props.food_id;
