@@ -19,7 +19,7 @@
                                 <h2 class="text_1">{{ title }}</h2>
                             </div>
                             <div class="modal-info-content">
-                                <h2 class="text_2">{{ content }}</h2>
+                                <h2 class="text_2" v-for="item in content">{{ item.tag_comment }}</h2>
                             </div>
                             <div class="modal-info-graph">
                                 <!-- <canvas id="myChart"></canvas> -->
@@ -58,7 +58,7 @@
     const food_id = ref(0);
     const image = ref();
     const title = ref();
-    const content = ref();
+    const content = ref([]);
     const flavor = ref(0);
     const price = ref(0);
     const famous = ref(0);
@@ -83,14 +83,9 @@
             flavor.value = Number(res.data.flavor);
             price.value = Number(res.data.price);
             famous.value = Number(res.data.famous);
-
-            let content_arr = "";
-
-            res.data.food_tag.forEach((element) => {
-                content_arr += element.tag_comment + " \n";
-            });
             
-            content.value = content_arr; // 내용
+            content.value = res.data.food_tag; // 내용
+            console.log(content.value);
 
             // chart data
             chartData.value = {
