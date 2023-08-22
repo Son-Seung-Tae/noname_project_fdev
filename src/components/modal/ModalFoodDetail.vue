@@ -42,7 +42,7 @@
     import { ref, computed, defineEmits, defineProps, onMounted } from 'vue';
     import { useModalStore } from '@/stores/modal';
     // api
-	import { getFoodDetail } from '@/api/api';
+	import { getFoodDetail, getSearch, getFoodRandom } from '@/api/api';
     
     // pinia
     // import { useViewStore } from '@/stores/view';
@@ -50,12 +50,13 @@
     Chart.register(...registerables);
  
     // const viewStore = useViewStore();
-    const props = defineProps(['food_id']); 
+    const props = defineProps(['mode', 'food_id', 'search']); 
     const emit = defineEmits(['closeModal']);
     const store = useModalStore();
 
     // param
     const food_id = ref(0);
+    const search = ref();
     const image = ref();
     const title = ref();
     const content = ref([]);
@@ -66,8 +67,8 @@
     const chartData = ref([]);
     const radarOptions = ref([]);
 
-    // 상품 상세api
-    const fetchFoodDetail = () => {
+    // 상품 상세api 추천id
+    const fetchFoodDetailId = () => {
         // validate
         if (!food_id.value) {
             return;
@@ -151,10 +152,189 @@
 			console(err);
 		})
     }
+
+    // 상품 상세api 검색
+    const fetchFoodDetailSearch = () => {
+        // validate
+        if (!search.value) {
+            return;
+        }
+
+        getSearch({
+            search: search.value
+        })
+		.then((res) => {
+			console.log(res.data);
+            image.value = res.data.image;
+            title.value = res.data.name;
+            flavor.value = Number(res.data.flavor);
+            price.value = Number(res.data.price);
+            famous.value = Number(res.data.famous);
+            
+            content.value = res.data.food_tag; // 내용
+            console.log(content.value);
+
+            // chart data
+            chartData.value = {
+                labels: [
+                    '맛','가격','인기도'
+                ],
+
+                datasets: [{
+                    label: '추천정도',
+                    data: [
+                        Number(flavor.value),
+                        Number(price.value),
+                        Number(famous.value),
+                    ],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',    
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }, ]
+            };
+
+            //차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
+            radarOptions.value = {
+                animations: {
+                tension: {
+                    duration: 800,
+                    easing: 'easeOutExpo',
+                    from: 1,
+                    to: 0,
+                    loop: true
+                }
+                },
+                //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
+                scales: {
+                    r:{
+                        min:0,
+                        max:5
+                    }
+                },
+                plugins: {
+                    legend: {
+                        
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+            };
+		})
+		.catch((err) => {
+			window.alert('오류가 발생했습니다.');
+			console(err);
+		})
+    }
+
+    // 상품 상세api 랜덤
+    const fetchFoodDetailRandom = () => {
+        // validate
+        if (!props.mode == "random") {
+            return;
+        }
+
+        getFoodRandom({
+            
+        })
+		.then((res) => {
+			console.log(res.data);
+            image.value = res.data.image;
+            title.value = res.data.name;
+            flavor.value = Number(res.data.flavor);
+            price.value = Number(res.data.price);
+            famous.value = Number(res.data.famous);
+            
+            content.value = res.data.food_tag; // 내용
+            console.log(content.value);
+
+            // chart data
+            chartData.value = {
+                labels: [
+                    '맛','가격','인기도'
+                ],
+
+                datasets: [{
+                    label: '추천정도',
+                    data: [
+                        Number(flavor.value),
+                        Number(price.value),
+                        Number(famous.value),
+                    ],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',    
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }, ]
+            };
+
+            //차트 타입 바꾸려면 type:?? 값 바꿔주면 됨
+            radarOptions.value = {
+                animations: {
+                tension: {
+                    duration: 800,
+                    easing: 'easeOutExpo',
+                    from: 1,
+                    to: 0,
+                    loop: true
+                }
+                },
+                //scale: 척도 정하는 옵션/ r값의 최소값과 최댓값을 지정해줄수 있다.
+                scales: {
+                    r:{
+                        min:0,
+                        max:5
+                    }
+                },
+                plugins: {
+                    legend: {
+                        
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+            };
+		})
+		.catch((err) => {
+			window.alert('오류가 발생했습니다.');
+			console(err);
+		})
+    }
     
     onMounted(() => {
-        food_id.value = props.food_id;
-        fetchFoodDetail();
+        if (props.mode == "food_id") {   
+            food_id.value = props.food_id;
+            fetchFoodDetailId();
+        } else if (props.mode == "search") {
+            search.value = props.search;
+            fetchFoodDetailSearch();
+        } else if (props.mode == "random") {
+            fetchFoodDetailRandom();
+        }
     });
 
  </script>

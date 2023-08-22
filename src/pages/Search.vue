@@ -3,17 +3,34 @@
         <h1 id="search_list">오늘 밥 뭐먹지?</h1>
     </div>
     <div id="search_fn">
-        <input id=search_css type="text" v-model="search">
+        <input id=search_css type="text" v-model="search" @keyup.enter="openModalFoodDetail()">
     </div>
+    <TeleportModal v-if="modalOpen">
+		<ModalFoodDetail @closeModal="closeModal" :search="search" mode="search"></ModalFoodDetail>
+	</TeleportModal>
 </template>
     
-<script>
-        export default {
-            name: 'search',
-            components: {
-                
-            }
-        }
+<script setup>
+    // 컴포넌트
+    import TeleportModal from '@/components/modal/TeleportModal';
+	import ModalFoodDetail from '@/components/modal/ModalFoodDetail';
+	// 내장 라이브러리
+	import { onMounted, ref } from 'vue';
+
+    const search = ref();
+
+    // 음식 상세 모달
+	const openModalFoodDetail = () => {
+		modalOpen.value = true;
+	};
+
+    const modalOpen = ref(false);
+
+    // 음식 모달 닫기
+	const closeModal = () => {
+		modalOpen.value = false;
+	}
+
 </script>
 
  <style>
@@ -63,10 +80,6 @@ border-radius: 10px;
 
 /* image 10 */
 
-
-
-
-background: ;
 
 
 /* 오늘 하루 어땠나요? */

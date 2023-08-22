@@ -64,7 +64,7 @@
 		</div>
 	</section>
 	<TeleportModal v-if="modalOpen">
-		<ModalFoodDetail @closeModal="closeModal" :food_id="food_id"></ModalFoodDetail>
+		<ModalFoodDetail @closeModal="closeModal" :food_id="food_id" mode="food_id"></ModalFoodDetail>
 	</TeleportModal>
 </template>
 
