@@ -90,10 +90,10 @@
 
 		)
 		.then((res) => {
-			recommend1.value = res.data[0].rcmd_word;
-			recommend2.value = res.data[1].rcmd_word;
-			recommend3.value = res.data[2].rcmd_word;
-			recommend4.value = res.data[3].rcmd_word;
+			recommend1.value = res.data[0].recommend_word;
+			recommend2.value = res.data[1].recommend_word;
+			recommend3.value = res.data[2].recommend_word;
+			recommend4.value = res.data[3].recommend_word;
 		})
 		.catch((err) => {
 			window.alert('오류가 발생했습니다.');
