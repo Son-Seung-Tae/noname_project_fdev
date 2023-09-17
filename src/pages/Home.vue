@@ -9,17 +9,8 @@
 					</header>
 				</div>
 				<div class="row" v-if="innerWidth > 980">
-					<div class="col-2 col-12-medium">
-						<input type="text" v-model="recommend1" disabled/>
-					</div>
-					<div class="col-2 col-12-medium">
-						<input type="text" v-model="recommend2" disabled/>
-					</div>
-					<div class="col-2 col-12-medium">
-						<input type="text" v-model="recommend3" disabled/>
-					</div>
-					<div class="col-2 col-12-medium">
-						<input type="text" v-model="recommend4" disabled/>
+					<div class="col-2 col-12-medium" v-for="item in recommend_word">
+						<input type="text" :value="item.recommend_word" disabled/>
 					</div>
 				</div>
 				<div class="row" v-else>
@@ -80,20 +71,13 @@
 	import { recommendWord, getMainFood } from '@/api/api';
 
 	// v-model
-	const recommend1 = ref();
-	const recommend2 = ref();
-	const recommend3 = ref();
-	const recommend4 = ref();
+	const recommend_word = ref([]);
 	// 추천 검색어
 	const fetchRecommendWord = () => {
-		recommendWord(
-
-		)
+		recommendWord()
 		.then((res) => {
-			recommend1.value = res.data[0].recommend_word;
-			recommend2.value = res.data[1].recommend_word;
-			recommend3.value = res.data[2].recommend_word;
-			recommend4.value = res.data[3].recommend_word;
+			recommend_word.value = res.data;
+			console.log(recommend_word.value);
 		})
 		.catch((err) => {
 			window.alert('오류가 발생했습니다.');
