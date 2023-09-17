@@ -544,5 +544,36 @@
         }
     
 	}
+
+    @media screen and (max-width: 480px) {
+        
+        .modal-wrapper[data-v-91522f0c] {
+        display: table-cell;  
+        vertical-align: top;
+    }
+
+        .modal-container[data-v-91522f0c] {
+        width: 300px;
+        height: 550px;
+        /* margin: 0rem auto; */
+        padding: 1rem 1rem;
+        /* margin-left: 20px; */
+        /* margin-right: 20px; */
+        margin: auto;
+        margin-top: 110px;
+        background-color: #F9FBE7;
+        border-radius: 2rem;
+        box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.33);
+        transition: all 0.3s ease;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+        .modal-body[data-v-91522f0c] {
+        display: block;
+        grid-template-columns: 50% 50%;
+    }
+
+    }
+
     
  </style>

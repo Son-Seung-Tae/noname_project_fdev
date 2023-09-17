@@ -3467,7 +3467,7 @@ input, select, textarea {
 					font-weight: 300;
 					height: 44px;
 					line-height: 44px;
-					text-align: center;
+					/*text-align: center;*/
 				}
 
 					#titleBar .title a {
@@ -3527,7 +3527,7 @@ input, select, textarea {
 				-webkit-transition: -webkit-transform 0.5s ease;
 				-ms-transition: -ms-transform 0.5s ease;
 				transition: transform 0.5s ease;
-				display: block;
+				display: none;
 				height: 100%;
 				left: 0;
 				overflow-y: auto;
@@ -3652,7 +3652,7 @@ input, select, textarea {
 		/* Wrapper */
 
 			.wrapper {
-				padding: 3em 1.25em 1em 1.25em;
+				padding: 0em 0em 0em 0em;
 			}
 
 		/* Banner */

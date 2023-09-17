@@ -138,7 +138,7 @@
 			-ms-transition: -ms-transform 0.5s ease;
 			transition: transform 0.5s ease;
 			display: block;
-			height: 70px;
+			height: 80px;
 			left: 0;
 			position: fixed;
 			top: 0;
@@ -152,10 +152,41 @@
             height: 40px;
             width: 40px;
             margin-left: 1em;
-            padding-top: 15px;
+            padding-top: 20px;
         }
 
         
+    }
+
+    @media screen and (max-width: 480px) {
+            
+            #titleBar {
+			-moz-backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-moz-transition: -moz-transform 0.5s ease;
+			-webkit-transition: -webkit-transform 0.5s ease;
+			-ms-transition: -ms-transform 0.5s ease;
+			transition: transform 0.5s ease;
+			display: block;
+			height: 80px;
+			left: 0;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 10001;
+			background: #FCAEAE;
+			box-shadow: 0 0.125em 0.125em 0 rgba(0, 0, 0, 0.25);
+		}
+
+        .Homeicon_img {
+            height: 32px;
+            width: 32px;
+            margin-left: 19px;
+            padding-top: 24px;
+        }
+
     }
     
  </style>

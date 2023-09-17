@@ -2,38 +2,40 @@
 <!-- 추천 검색어 -->
 	<section id="main" class="wrapper style1">
 		<div class="content">
-			<div class="row">
-				<header>
-					<h2>추천 검색어</h2>
-				</header>
-			</div>
-			<div class="row" v-if="innerWidth > 980">
-				<div class="col-2 col-12-medium">
-					<input type="text" v-model="recommend1" disabled/>
+			<div id=fix1>
+				<div class="row">
+					<header>
+						<h2>추천 검색어</h2>
+					</header>
 				</div>
-				<div class="col-2 col-12-medium">
-					<input type="text" v-model="recommend2" disabled/>
-				</div>
-				<div class="col-2 col-12-medium">
-					<input type="text" v-model="recommend3" disabled/>
-				</div>
-				<div class="col-2 col-12-medium">
-					<input type="text" v-model="recommend4" disabled/>
-				</div>
-			</div>
-			<div class="row" v-else>
-				<div class="col-4 col-12-medium">
-					<div class="col-2 col-12-xsmall">
-						<input type="text" v-model="recommend1" style="width: 60%;" disabled/>
+				<div class="row" v-if="innerWidth > 980">
+					<div class="col-2 col-12-medium">
+						<input type="text" v-model="recommend1" disabled/>
 					</div>
-					<div class="col-2 col-12-xsmall">
-						<input type="text" v-model="recommend2" style="width: 60%;" disabled/>
+					<div class="col-2 col-12-medium">
+						<input type="text" v-model="recommend2" disabled/>
 					</div>
-					<div class="col-2 col-12-xsmall">
-						<input type="text" v-model="recommend3" style="width: 60%;" disabled/>
+					<div class="col-2 col-12-medium">
+						<input type="text" v-model="recommend3" disabled/>
 					</div>
-					<div class="col-2 col-12-xsmall">
-						<input type="text" v-model="recommend4" style="width: 60%;" disabled/>
+					<div class="col-2 col-12-medium">
+						<input type="text" v-model="recommend4" disabled/>
+					</div>
+				</div>
+				<div class="row" v-else>
+					<div class="col-4 col-12-medium">
+						<div class="col-2 col-12-xsmall">
+							<input type="text" v-model="recommend1" style="width: 60%;" disabled/>
+						</div>
+						<div class="col-2 col-12-xsmall">
+							<input type="text" v-model="recommend2" style="width: 60%;" disabled/>
+						</div>
+						<div class="col-2 col-12-xsmall">
+							<input type="text" v-model="recommend3" style="width: 60%;" disabled/>
+						</div>
+						<div class="col-2 col-12-xsmall">
+							<input type="text" v-model="recommend4" style="width: 60%;" disabled/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -47,7 +49,7 @@
 							</td>
 						</tr>
 					</table>	 -->
-					<div style="display:inline;" v-for="item in foodImgList">
+					<div class=container1 style="display:inline;" v-for="item in foodImgList">
 						<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
 					</div>
 				</header>
@@ -55,7 +57,7 @@
 			<div class="row_1" v-else>
 				<header>
 				<h2>인기메뉴</h2>
-					<div style="display:inline;" v-for="(item, index) in foodImgList">
+					<div class=container2 style="display:inline;" v-for="(item, index) in foodImgList">
 						<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
 						<br v-if="index % 2 == 1"/>
 					</div>
@@ -176,10 +178,10 @@
 		}
 
 		.img_size {
-			width: 300px;
-			height: 300px;
+			width: 350px;
+			height: 350px;
 			padding-top: 0.5rem;
-			padding-right: 5em;
+			padding-right: 50px;
 		}
 
 		table {
@@ -222,7 +224,8 @@
 			width: 260px;
 			height: 260px;
 			padding-top: 0.5em;
-			padding-right: 4em;
+			padding-right: 40px;
+			border-radius: 20%;
 		}
 
 		.row_1 {
@@ -235,4 +238,48 @@
 
 }
 
+	@media screen and (max-width: 480px) {
+		
+		#main {
+		width: 100%;
+		height: 100%;
+		padding-top: 80px;
+	}
+
+		.content {
+		padding-left: 0px;
+		padding-top: 0px;
+	}
+
+		h2 {
+		font-size: 1.2em;
+		line-height: 1.2em;
+		letter-spacing: -0.025em;
+		padding-left: 24px;
+		padding-top: 19px;
+	}
+
+		input[type="text"] {
+		height: 44px;
+		color: rgba(0, 0, 0, 0.75);
+		font-weight: 500;
+		margin-bottom: 0px;
+		margin-top: 10px;
+		margin-left: 17px;
+	}
+
+		.row_1 {
+		padding-top: 0px;
+	}
+
+		.img_size {
+		width: 140px;
+		height: 140px;
+		padding-top: 0.5em;
+		padding-right: 0px;
+		padding-left: 37px;
+		border-radius: 13%;
+	}
+
+	}
 </style>

@@ -76,6 +76,43 @@
 
 		
 }
+	@media screen and (max-width: 1024px) {
+		#random {
+		text-align: center;
+		margin-top: 500px;
+	}
+
+		.random_img {
+		width: 250px;
+	}
+
+		.random_text {
+		text-align: center;
+		font-size: 25px;
+		line-height: 5rem;
+	}
+
+
+	}
+
+
+	@media screen and (max-width: 480px) {
+		#random {
+		text-align: center;
+		margin-top: 18rem;
+	}
+
+		.random_text {
+		text-align: center;
+		font-size: 15px;
+		line-height: 5rem;
+	}
+
+		.random_img {
+		width: 150px;
+	}
+
+	}
 
 
 </style>
