@@ -50,7 +50,8 @@
 				<header>
 				<h2>인기메뉴</h2>
 					<div class=container2 style="display:inline;" v-for="(item, index) in foodImgList">
-						<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+						<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+						<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
 						<br v-if="index % 2 == 1"/>
 					</div>
 				</header>
