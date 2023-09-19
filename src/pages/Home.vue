@@ -41,7 +41,8 @@
 						</tr>
 					</table>	 -->
 					<div class=container1 style="display:inline;" v-for="item in foodImgList">
-						<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+						<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+						<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
 					</div>
 				</header>
 			</div>
