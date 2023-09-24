@@ -91,7 +91,6 @@
             id: food_id.value
         })
 		.then((res) => {
-			console.log(res.data);
             image.value = res.data.image;
             title.value = res.data.name;
             flavor.value = Number(res.data.flavor);
@@ -99,7 +98,6 @@
             famous.value = Number(res.data.famous);
             
             content.value = res.data.food_tag; // 내용
-            // console.log(content.value);
 
             // chart data
             chartData.value = {
@@ -171,7 +169,6 @@
             search: search.value
         })
 		.then((res) => {
-			console.log(res.data);
             image.value = res.data.image;
             title.value = res.data.name;
             flavor.value = Number(res.data.flavor);
@@ -179,7 +176,6 @@
             famous.value = Number(res.data.famous);
             
             content.value = res.data.food_tag; // 내용
-            // console.log(content.value);
 
             // chart data
             chartData.value = {
@@ -251,7 +247,6 @@
             
         })
 		.then((res) => {
-			console.log(res.data);
             image.value = res.data.image;
             title.value = res.data.name;
             flavor.value = Number(res.data.flavor);
@@ -259,7 +254,6 @@
             famous.value = Number(res.data.famous);
             
             content.value = res.data.food_tag; // 내용
-            console.log(content.value);
 
             // chart data
             chartData.value = {
@@ -304,14 +298,8 @@
                 },
                 plugins: {
                     legend: {
-                        
-                        labels: {
-                            // This more specific font property overrides the global property
-                            font: {
-                                size: 20
-                            }
-                        }
-                    }
+                        display: false
+                    },
                 },
                 elements: {
                     line: {
