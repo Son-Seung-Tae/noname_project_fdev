@@ -2,15 +2,16 @@
     <div class="modal-mask">
         <div class="modal-wrapper">
             <div class="modal-container">
-                <div class="row modal-header">
+                <!-- <div class="row modal-header">
                     <div class="cursor">
-                        <p  class="cursor_icon" style="cursor: pointer;" @click="$emit('closeModal')">X</p>
+                        <p class="cursor_icon" style="cursor: pointer;" @click="$emit('closeModal')">X</p>
                     </div>
-                </div>
-                <div class="row modal-body">
+                </div> -->
+                <div v-if="innerWidth > 980" class="row modal-body">
                     <div class="col-6">
                         <div class="modal-image">
-                            <img class="modal-image" :src="image">
+                            <img v-if="image" :src="image">
+                            <img v-else src="/assets/css/images/noImage.svg">
                         </div>
                     </div>
                     <div class="modal_text">
@@ -22,10 +23,22 @@
                                 <h2 class="text_2" v-for="item in content">{{ item.tag_comment }}</h2>
                             </div>
                             <div class="modal-info-graph">
-                                <!-- <canvas id="myChart"></canvas> -->
                                 <RadarChart :options="radarOptions" :chartData="chartData"></RadarChart>
                             </div>                         
                         </div>
+                    </div>
+                </div>
+                <div v-else class="modal-body">
+                    <h2 class="text_1">{{ title }}</h2>
+                    <div class="modal-image">
+                        <img v-if="image" :src="image">
+                        <img v-else src="/assets/css/images/noImage.svg">
+                    </div>
+                    <div>
+                        <h2 class="text_2" v-for="item in content">{{ item.tag_comment }}</h2>
+                    </div>
+                    <div class="modal-info-graph">
+                        <RadarChart :options="radarOptions" :chartData="chartData" style="height: 10rem;"></RadarChart>
                     </div>
                 </div>
             </div>
@@ -86,7 +99,7 @@
             famous.value = Number(res.data.famous);
             
             content.value = res.data.food_tag; // 내용
-            console.log(content.value);
+            // console.log(content.value);
 
             // chart data
             chartData.value = {
@@ -131,14 +144,8 @@
                 },
                 plugins: {
                     legend: {
-                        
-                        labels: {
-                            // This more specific font property overrides the global property
-                            font: {
-                                size: 20
-                            }
-                        }
-                    }
+                        display: false
+                    },
                 },
                 elements: {
                     line: {
@@ -172,7 +179,7 @@
             famous.value = Number(res.data.famous);
             
             content.value = res.data.food_tag; // 내용
-            console.log(content.value);
+            // console.log(content.value);
 
             // chart data
             chartData.value = {
@@ -217,14 +224,8 @@
                 },
                 plugins: {
                     legend: {
-                        
-                        labels: {
-                            // This more specific font property overrides the global property
-                            font: {
-                                size: 20
-                            }
-                        }
-                    }
+                        display: false
+                    },
                 },
                 elements: {
                     line: {
@@ -324,8 +325,21 @@
 			console(err);
 		})
     }
+
+    //Hide modal
+    window.addEventListener('click', (e) => {
+        e.target === document.querySelector('.modal-wrapper') ?  emit("closeModal") : false
+    });
+
+    // 넓이
+	const innerWidth = ref();
     
     onMounted(() => {
+        innerWidth.value = window.innerWidth;
+		window.addEventListener('resize', () => {
+			innerWidth.value = window.innerWidth;
+		});
+
         if (props.mode == "food_id") {   
             food_id.value = props.food_id;
             fetchFoodDetailId();
@@ -386,8 +400,7 @@
 
     .modal-image img{
         height: 60%;
-        weight: 60%;
-        width: 600px;
+        width: 28rem;
         padding-left: 50px;
         padding-top: 12px;
     }
@@ -460,7 +473,6 @@
         margin: 0 0 0 0;
         color: #110303;
         font-size: x-large;
-        
     }
 
     .modal_text {
@@ -470,15 +482,15 @@
     .text_1 {
         margin-left: 60px;
         height: 2em;
-        font-weight: 800;
-        padding-top: 0.4em;
-        font-size: 2.5em;
+        font-weight: 700;
+        padding-top: 0.3em;
+        font-size: 1.5em;
     }
 
     .text_2 {
         margin-left: 60px;
         font-weight: normal;
-        font-size: 1.8em;
+        font-size: 1.2em;
         height: 3.5em;
     }
 
@@ -487,38 +499,10 @@
     }
     
     .modal-info-graph {
-        margin-left:2em;
-        
+        margin-left:2em;  
     }
-    
-    @media screen and (max-width: 1680px) {
-        
-        .modal-image img{
-            height: 60%;
-            weight: 60%;
-            width: 500px;
-            padding-left: 50px;
-            padding-top: 12px;
-    }
-		
-        .text_1 {
-            margin-left: 40px;
-            height: 2em;
-            font-weight: 800;
-            padding-top: 0.4em;
-            font-size: 2.2em;
-        }
-    
-        .text_2 {
-            margin-left: 40px;
-            font-weight: normal;
-            font-size: 1.5em;
-            height: 3.5em;
-        }
-    
-	}
 
-    @media screen and (max-width: 1440px) {
+    /* @media screen and (max-width: 1440px) {
         
         .modal-image img{
             height: 60%;
@@ -543,36 +527,77 @@
             height: 3.5em;
         }
     
-	}
+	} */
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 980px) {
         
-        .modal-wrapper[data-v-91522f0c] {
-        display: table-cell;  
-        vertical-align: top;
-    }
+        .modal-mask {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: table;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-        .modal-container[data-v-91522f0c] {
-        width: 300px;
-        height: 550px;
-        /* margin: 0rem auto; */
-        padding: 1rem 1rem;
-        /* margin-left: 20px; */
-        /* margin-right: 20px; */
-        margin: auto;
-        margin-top: 110px;
-        background-color: #F9FBE7;
-        border-radius: 2rem;
-        box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.33);
-        transition: all 0.3s ease;
-        font-family: Helvetica, Arial, sans-serif;
-    }
+        .modal-wrapper {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
 
-        .modal-body[data-v-91522f0c] {
-        display: block;
-        grid-template-columns: 50% 50%;
-    }
+        .modal-container {
+            width: 62%;
+            height: 70%;
+            margin: 0rem auto;
+            display: inline-block;
+            background-color: #F9FBE7;
+            border-radius: 2rem;
+            box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.33);
+            transition: all 0.3s ease;
+            font-family: Helvetica, Arial, sans-serif;
+        }
 
+        .cursor_icon {
+            margin: 0 0 0 0;
+            color: #110303;
+            font-size: medium;
+        }
+
+        .modal-body {
+            display: block;
+        }
+
+        .modal-image img{
+            height: 30%;
+            width: 11rem;
+            padding-left: 0.1rem;
+        }
+
+        .text_1 {
+            margin-left: 30%;
+            font-weight: 600;
+            padding-top: 0.3em;
+            font-size: 1.3em;
+            height: 1.2rem;
+        }
+
+        .text_2 {
+            margin-left: 0;
+            font-weight: normal;
+            font-size: 1em;
+            height: 0.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-info-graph {
+            margin-left:1em;
+            height: 8rem;
+        }
+        
     }
 
     
