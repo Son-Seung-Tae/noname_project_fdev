@@ -15,17 +15,8 @@
 				</div>
 				<div class="row" v-else>
 					<div class="col-4 col-12-medium">
-						<div class="col-2 col-12-xsmall">
-							<input type="text" v-model="recommend1" style="width: 60%;" disabled/>
-						</div>
-						<div class="col-2 col-12-xsmall">
-							<input type="text" v-model="recommend2" style="width: 60%;" disabled/>
-						</div>
-						<div class="col-2 col-12-xsmall">
-							<input type="text" v-model="recommend3" style="width: 60%;" disabled/>
-						</div>
-						<div class="col-2 col-12-xsmall">
-							<input type="text" v-model="recommend4" style="width: 60%;" disabled/>
+						<div class="col-2 col-12-xsmall" v-for="item in recommend_word">
+							<input type="text" :value="item.recommend_word" disabled style="width: 60%;"/>
 						</div>
 					</div>
 				</div>
