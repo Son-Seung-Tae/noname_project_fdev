@@ -40,19 +40,23 @@
 							</td>
 						</tr>
 					</table>	 -->
-					<div class=container1 style="display:inline;" v-for="item in foodImgList">
-						<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
-						<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
+					<div id=conatiner_vertical>
+						<div class=container1 style="display:inline;" v-for="item in foodImgList">
+							<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+							<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
+						</div>
 					</div>
 				</header>
 			</div>
 			<div class="row_1" v-else>
 				<header>
 				<h2>인기메뉴</h2>
-					<div class=container2 style="display:inline;" v-for="(item, index) in foodImgList">
-						<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
-						<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
-						<br v-if="index % 2 == 1"/>
+					<div id=conatiner_vertical>
+						<div class=container2 style="display:inline;" v-for="(item, index) in foodImgList">
+							<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+							<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
+							<br v-if="index % 2 == 1"/>
+						</div>
 					</div>
 				</header>
 			</div>
@@ -149,15 +153,36 @@
 	.img_size {
 		width: 370px;
 		height: 370px;
-		padding-top: 0.5rem;
+		padding-right: 74px;
+		padding-bottom: 30px;
 	}
 
 	#second_header {
 		padding-top:20px;
 	}
 
+	div#conatiner_vertical {
+		overflow: auto;
+		padding-top: 30px;
+		height: 378px;
+		width: 1840px;
+	}
+
 	@media screen and (max-width: 1680px) {
         
+		.row {
+			display: flex;
+			flex-wrap: nowrap;
+			box-sizing: border-box;
+			align-items: stretch;
+			padding-top: 10px;
+			overflow-x: auto;
+		}
+
+				.row > * {
+			padding: 0 50px 0 0;
+		}
+
 		.content {
 			padding-left:60px;
 			padding-top: 80px;
@@ -168,12 +193,47 @@
 			height: 350px;
 			padding-top: 0.5rem;
 			padding-right: 50px;
+			border-radius: 10%;
 		}
 
 		table {
     	margin: 0 0 2em 0;
     
 		}
+
+		input[type="text"], input[type="password"], input[type="email"], select, textarea {
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			-ms-appearance: none;
+			appearance: none;
+			-moz-transition: border-color 0.2s ease-in-out;
+			-webkit-transition: border-color 0.2s ease-in-out;
+			-ms-transition: border-color 0.2s ease-in-out;
+			transition: border-color 0.2s ease-in-out;
+			background: #F9FBE7;
+			border-radius: 15px;
+			border: solid 1px rgba(255, 255, 255, 0.3);
+			color: #0000;
+			display: block;
+			outline: 0;
+			padding: 0 1em;
+			text-decoration: none;
+			width: 300px;
+			height: 150px;
+		}
+
+				input[type="text"], input[type="password"], input[type="email"], select {
+			color: rgba(0, 0, 0, 0.75);
+			font-weight: 500;
+		}
+
+		div#conatiner_vertical {
+			overflow: auto;
+			padding-top: 30px;
+			height: 378px;
+			width: 1600px;
+		}
+
     }
 
 	@media screen and (max-width: 1440px) {
@@ -207,11 +267,11 @@
 		}
 
 		.img_size {
-			width: 260px;
-			height: 260px;
+			width: 300px;
+			height: 300px;
 			padding-top: 0.5em;
 			padding-right: 40px;
-			border-radius: 20%;
+			border-radius: 10%;
 		}
 
 		.row_1 {
@@ -222,7 +282,60 @@
 			padding-top: 50px;
 		}
 
+		div#conatiner_vertical {
+			overflow: auto;
+			padding-top: 0px;
+			height: 308px;
+			margin-top: 30px;
+			width: 1360px;
+		}
+
 }
+
+	@media screen and (max-width: 1024px) {
+		.row > * {
+			padding: 0 20px 0 0;
+		}
+
+		input[type="text"], input[type="password"], input[type="email"], select, textarea {
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			appearance: none;
+			transition: border-color 0.2s ease-in-out;
+			background: #F9FBE7;
+			border-radius: 15px;
+			border: solid 1px rgba(255, 255, 255, 0.3);
+			color: #0000;
+			display: block;
+			outline: 0;
+			padding: 0 1em;
+			text-decoration: none;
+			width: 200px;
+			height: 150px;
+		}
+
+		div#conatiner_vertical {
+			overflow: auto;
+			padding-top: 0px;
+			height: 616px;
+			margin-top: 30px;
+			width: 975px;
+		}
+
+		.img_size {
+			width: 270px;
+			height: 270px;
+			padding-top: 0.5em;
+			padding-right: 55px;
+			border-radius: 10%;
+		}
+
+		input[type="text"], input[type="password"], input[type="email"], select {
+			color: rgba(0, 0, 0, 0.75);
+			font-weight: 500;
+		}
+
+	}
 
 	@media screen and (max-width: 480px) {
 		
@@ -245,27 +358,65 @@
 		padding-top: 19px;
 	}
 
-		input[type="text"] {
-		height: 44px;
-		color: rgba(0, 0, 0, 0.75);
-		font-weight: 500;
-		margin-bottom: 0px;
-		margin-top: 10px;
-		margin-left: 17px;
-	}
+		
 
 		.row_1 {
 		padding-top: 0px;
 	}
 
 		.img_size {
-		width: 140px;
-		height: 140px;
-		padding-top: 0.5em;
-		padding-right: 0px;
-		padding-left: 37px;
-		border-radius: 13%;
+			width: 140px;
+			height: 140px;
+			padding-top: 0px;
+			padding-right: 0px;
+			padding-left: 37px;
+			border-radius: 0%;
+			margin-top: 10px;
+			padding-bottom: 20px;
+		}
+
+	.row {
+		padding-top:0px;
+		 margin-left: 0px; 
+	}	
+
+	div#conatiner_vertical {
+		overflow: auto;
+		padding-top: 0px;
+		height: 330px;
+		margin-top: 0px;
+		width: 480px;
 	}
+
+	
+	input[type="text"], input[type="password"], input[type="email"], select, textarea {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		appearance: none;
+		transition: border-color 0.2s ease-in-out;
+		background: #F9FBE7;
+		border-radius: 15px;
+		border: solid 1px rgba(255, 255, 255, 0.3);
+		color: #0000;
+		display: block;
+		outline: 0;
+		padding: 0 1em;
+		text-decoration: none;
+		width: 200px;
+		height: 40px;
+	}
+
+	input[type="text"], input[type="password"], input[type="email"], select {
+		color: rgba(0, 0, 0, 0.75);
+		font-weight: 500;
+	}
+
+	.row > .col-12-medium {
+		width: 100%;
+		margin-left: 10px;
+	}
+
+	
 
 	}
 </style>

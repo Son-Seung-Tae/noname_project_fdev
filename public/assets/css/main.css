@@ -690,9 +690,10 @@ input, select, textarea {
 
 	.row {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		box-sizing: border-box;
 		align-items: stretch;
+		overflow-x: auto;
 	}
 
 		.row > * {
@@ -740,7 +741,7 @@ input, select, textarea {
 		}
 
 		.row > .col-2 {
-			width: 25%;
+			
 		}
 
 		.row > .off-2 {
@@ -881,6 +882,9 @@ input, select, textarea {
 		.row {
 			margin-top: 0;
 			margin-left: 0;
+			width:100%;
+			padding-top: 10px;
+			
 		}
 
 			.row > * {
@@ -1782,7 +1786,8 @@ input, select, textarea {
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+		width: 400px;
+		height: 150px;
 	}
 
 		input[type="text"]:invalid,
@@ -1830,7 +1835,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 12rem;
+		
 		color: rgba(0, 0, 0, 0.75);
 		font-weight: 500;
 	}
