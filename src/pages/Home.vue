@@ -124,12 +124,22 @@
 			innerWidth.value = window.innerWidth;
 		})
 	});
+
+	
 </script>
 
 <style>
 	.row_1 {
 		padding-top: 50px;
 	}
+
+	.row::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}
+
+	#conatiner_vertical::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}	
 	
 	
 	.content {
@@ -168,6 +178,14 @@
 			align-items: stretch;
 			padding-top: 10px;
 			overflow-x: auto;
+		}
+
+		.row::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}
+
+		#conatiner_vertical::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
 		}
 
 				.row > * {
@@ -268,6 +286,14 @@
 		.row_1 {
 			padding-top: 30px;
 		}
+
+		.row::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}
+
+		#conatiner_vertical::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}
 		
 		#second_header {
 			padding-top: 50px;
@@ -286,6 +312,14 @@
 	@media screen and (max-width: 1024px) {
 		.row > * {
 			padding: 0 20px 0 0;
+		}
+
+		.row::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}
+
+		#conatiner_vertical::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
 		}
 
 		input[type="text"], input[type="password"], input[type="email"], select, textarea {
@@ -406,6 +440,10 @@
 		width: 100%;
 		margin-left: 10px;
 	}
+
+	#conatiner_vertical::-webkit-scrollbar {
+			display: none; /* Chrome, Safari, Opera*/
+		}
 
 	
 
