@@ -42,6 +42,14 @@
                     </div>
                 </div>
             </div>
+            <div class="research" v-if="props.mode != 'food_id'">
+                <button class="research-btn">
+                    <p class="research-text" @click="emit('closeModal')">다시검색</p>
+                </button>
+                <button class="research-btn" @click="researchBtn">
+                    <p class="research-text">재검색</p>
+                </button>
+            </div>
         </div>
     </div>
  </template>
@@ -314,6 +322,16 @@
 		})
     }
 
+    // 재검색
+    const researchBtn = () => {
+        if (props.mode == "search") {
+            search.value = props.search;
+            fetchFoodDetailSearch();
+        } else if (props.mode == "random") {
+            fetchFoodDetailRandom();
+        }
+    }
+
     //Hide modal
     window.addEventListener('click', (e) => {
         e.target === document.querySelector('.modal-wrapper') ?  emit("closeModal") : false
@@ -539,7 +557,7 @@
 
         .modal-container {
             width: 62%;
-            height: 70%;
+            height: 60%;
             margin: 0rem auto;
             display: inline-block;
             background-color: #F9FBE7;
@@ -566,7 +584,7 @@
         }
 
         .text_1 {
-            margin-left: 30%;
+            margin-left: 23%;
             font-weight: 600;
             padding-top: 0.3em;
             font-size: 1.3em;
@@ -584,6 +602,37 @@
         .modal-info-graph {
             margin-left:1em;
             height: 8rem;
+        }
+
+        .research {
+            display: inline-block;
+            padding: 1rem;
+        }
+
+        .research-btn {
+            width: 7.5rem;
+            height: 3rem;
+            flex-shrink: 0;
+            background: #FEA1A1;
+            border-radius: 1rem;
+            margin: 1rem;
+        }
+
+        .research-text {
+            display: flex;
+            width: 100%;
+            height: 50%;
+            flex-direction: column;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #000;
+            text-align: center;
+            font-family: Inter;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0rem;
         }
         
     }
