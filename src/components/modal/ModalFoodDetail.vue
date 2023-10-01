@@ -7,6 +7,7 @@
                         <p class="cursor_icon" style="cursor: pointer;" @click="$emit('closeModal')">X</p>
                     </div>
                 </div> -->
+                <!-- 웹 -->
                 <div v-if="innerWidth > 980" class="row modal-body">
                     <div class="col-6">
                         <div class="modal-image">
@@ -27,7 +28,12 @@
                             </div>                         
                         </div>
                     </div>
+                    <div></div>
+                    <div class="research">
+                        <img style="cursor: pointer;" src="/assets/css/images/researchIcon.png" @click="researchBtn">
+                    </div>
                 </div>
+                <!-- 엡 -->
                 <div v-else class="modal-body">
                     <h2 class="text_1">{{ title }}</h2>
                     <div class="modal-image">
@@ -42,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="research" v-if="props.mode != 'food_id'">
+            <div class="research" v-if="innerWidth <= 980 && props.mode != 'food_id'">
                 <button class="research-btn">
                     <p class="research-text" @click="emit('closeModal')">다시검색</p>
                 </button>
@@ -506,6 +512,13 @@
     
     .modal-info-graph {
         margin-left:2em;  
+    }
+
+    .research {
+        display: flex;
+        padding: 1rem;
+        justify-content: flex-end;
+        align-content: flex-end;
     }
 
     /* @media screen and (max-width: 1440px) {
