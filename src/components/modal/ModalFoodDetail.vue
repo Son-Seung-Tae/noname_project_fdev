@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div></div>
-                    <div class="research">
+                    <div class="research" v-if="props.mode != 'food_id'">
                         <img style="cursor: pointer;" src="/assets/css/images/researchIcon.png" @click="researchBtn">
                     </div>
                 </div>
@@ -507,11 +507,11 @@
     }
 
     .text_3 {
-        margin-left:2em;
+        margin-left:2rem;
     }
     
     .modal-info-graph {
-        margin-left:2em;  
+        margin-left:4rem;  
     }
 
     .research {
@@ -615,6 +615,7 @@
         .modal-info-graph {
             margin-left:1em;
             height: 8rem;
+            padding-top: 2rem;
         }
 
         .research {

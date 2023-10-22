@@ -2,7 +2,7 @@
 <!-- 추천 검색어 -->
 	<section id="main" class="wrapper style1">
 		<div class="content">
-			<div id=fix1>
+			<div id="fix1">
 				<div class="row">
 					<header>
 						<h2>추천 검색어</h2>
@@ -27,14 +27,14 @@
 					<!-- <table>
 						<tr>
 							<td v-for="item in foodImgList">
-								<img class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
+								<img class="img_size" :src="item.image" @click="openModalFoodDetail(item.food_id)">
 							</td>
 						</tr>
 					</table>	 -->
-					<div id=conatiner_vertical>
-						<div class=container1 style="display:inline;" v-for="item in foodImgList">
-							<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
-							<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
+					<div id="conatiner_vertical">
+						<div class="container1" style="display:inline;" v-for="item in foodImgList">
+							<img v-if="item.image" class="img_size" :src="item.image" @click="openModalFoodDetail(item.food_id)">
+							<img v-else class="img_size" src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
 						</div>
 					</div>
 				</header>
@@ -42,10 +42,10 @@
 			<div class="row_1" v-else>
 				<header>
 				<h2>인기메뉴</h2>
-					<div id=conatiner_vertical>
-						<div class=container2 style="display:inline;" v-for="(item, index) in foodImgList">
-							<img v-if="item.image" class=img_size :src="item.image" @click="openModalFoodDetail(item.food_id)">
-							<img v-else class=img_size src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
+					<div id="conatiner_vertical">
+						<div class="container2" style="display:inline;" v-for="(item, index) in foodImgList">
+							<img v-if="item.image" class="img_size" :src="item.image" @click="openModalFoodDetail(item.food_id)">
+							<img v-else class="img_size" src="/assets/css/images/noImage.svg" @click="openModalFoodDetail(item.food_id)">
 							<br v-if="index % 2 == 1"/>
 						</div>
 					</div>
@@ -164,6 +164,7 @@
 
 	div#conatiner_vertical {
 		overflow: auto;
+		white-space: nowrap;
 		padding-top: 30px;
 		height: 378px;
 		width: 1840px;
@@ -238,6 +239,7 @@
 
 		div#conatiner_vertical {
 			overflow: auto;
+			white-space: nowrap;
 			padding-top: 30px;
 			height: 378px;
 			width: 1600px;
@@ -301,6 +303,7 @@
 
 		div#conatiner_vertical {
 			overflow: auto;
+			white-space: nowrap;
 			padding-top: 0px;
 			height: 308px;
 			margin-top: 30px;
@@ -341,6 +344,7 @@
 
 		div#conatiner_vertical {
 			overflow: auto;
+			white-space: nowrap;
 			padding-top: 0px;
 			height: 616px;
 			margin-top: 30px;
@@ -407,6 +411,7 @@
 
 	div#conatiner_vertical {
 		overflow: auto;
+		white-space: nowrap;
 		padding-top: 0px;
 		height: 330px;
 		margin-top: 0px;
